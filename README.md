@@ -29,9 +29,9 @@ We will hash the user's password using `bcryptjs`, and use JSON Web Tokens and t
 
 Your finished project must include all of the following requirements (further instructions are found inside each file):
 
-- [ ] An authentication workflow with functionality for account creation and login, implemented inside `api/auth/auth-router.js`.
-- [ ] Middleware used to restrict access to resources from non-authenticated requests, implemented inside `api/middleware/restricted.js`.
-- [ ] A minimum of 2 tests per API endpoint, written inside `api/server.test.js`.
+- [x] An authentication workflow with functionality for account creation and login, implemented inside `api/auth/auth-router.js`.
+- [x] Middleware used to restrict access to resources from non-authenticated requests, implemented inside `api/middleware/restricted.js`.
+- [x] A minimum of 2 tests per API endpoint, written inside `api/server.test.js`.
 
 **IMPORTANT Notes:**
 
@@ -45,16 +45,26 @@ Your finished project must include all of the following requirements (further in
 
 ## Submission format
 
-- [ ] Submit via Codegrade by pushing commits to your `<firstName-lastName>` branch on Github.
-- [ ] Check Codegrade before the deadline to compare its results against your local tests.
-- [ ] Check Codegrade on the days following the Sprint Challenge for reviewer feedback.
-- [ ] New commits will be evaluated by Codegrade if pushed _before_ the sprint challenge deadline.
+- [x] Submit via Codegrade by pushing commits to your `<firstName-lastName>` branch on Github.
+- [x] Check Codegrade before the deadline to compare its results against your local tests.
+- [x] Check Codegrade on the days following the Sprint Challenge for reviewer feedback.
+- [x] New commits will be evaluated by Codegrade if pushed _before_ the sprint challenge deadline.
 
 ## Interview Questions
 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics.
 
 1. Differences between using _sessions_ or _JSON Web Tokens_ for authentication.
+
+    A) The one main difference I can think of is sessions use cookies that are stored on the server side. JSON Web Tokens are stored on the client side. This makes JSON Web Tokens more valuable in a larger setting because if there are many users, sessions can eat up server memory.
+
 2. What does `bcryptjs` do to help us store passwords in a secure manner?
+
+    A) With bcrypt, it performs an action we call "hashing" on the password. This basically scrambles the password so that it isn't left uncrypted anywhere on the server for attackers to easily access.
+
 3. How are unit tests different from integration and end-to-end testing?
+    A) Unit tests only test one unit (component, function, etc) at a time. Integration testing is used to see how units perform together. End to end testing is used to test an entire application all at once.
+
 4. How does _Test Driven Development_ change the way we write applications and tests?
+
+    A) With Test Driven Development, it feels like we work backwards (in a sense). I'm so used to creating something then testing it, but with TDD, we first write the simplest test that will fail, then we write the least amount of code that will pass the test, and finally we reward ourselves by refactoring that code. 

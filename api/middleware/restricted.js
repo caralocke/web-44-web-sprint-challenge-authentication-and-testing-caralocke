@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
       }
     })
   } else {
-    res.status(401).json({ message: 'token required'})
+    res.status(407).json({ message: 'token required'})
   }
   /*
     IMPLEMENT

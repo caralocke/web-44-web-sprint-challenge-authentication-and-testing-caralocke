@@ -1,6 +1,7 @@
 const request = require('supertest')
 const db = require('../data/dbConfig')
 const server = require('./server')
+const jokes = require('./jokes/jokes-data')
 
 test('sanity', () => {
   expect(true).toBe(true)
@@ -22,7 +23,9 @@ describe('[POST] /api/auth/register', () => {
   })
 
   it('responds with a 422 if no username or password in payload', async () => {
-    let res = await request(server).post('/api/auth/register').send({ username: '', password: '' })
+    let res = await request(server).post('/api/auth/register').send({ username: '', password: '1234' })
+    expect(res.status).toBe(422)
+    res = await request(server).post('/api/auth/register').send({ username: 'test1', password: ''})
     expect(res.status).toBe(422)
   })
 
@@ -47,5 +50,17 @@ describe('[POST] /api/auth/login', () => {
 })
 
 describe('[GET] /api/jokes', () => {
+  it('responds with dad jokes if given valid token', async () => {
+    const res = await request(server).post('/api/auth/login').send({ username: 'test', password: '1234'})
+    const dadJokes = await request(server)
+    .get('/api/jokes')
+    .set({ authorization: res.body.token })
+    expect(dadJokes.body).toMatchObject(jokes)
+  })
 
+  it('responds with a 407 if no token provided', async () => {
+    const res = await request(server).get('/api/jokes')
+    expect(res.status).toBe(407)
+  })
+  
 })

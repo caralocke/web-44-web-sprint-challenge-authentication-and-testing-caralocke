@@ -8,7 +8,7 @@ module.exports= {
 function validateUser(req, res, next) {
     const { username, password } = req.body
     if (!username || !password) {
-        res.status(400).json({ message: 'username and password are required'})
+        res.status(422).json({ message: 'username and password are required'})
     } else {
         next()
     }

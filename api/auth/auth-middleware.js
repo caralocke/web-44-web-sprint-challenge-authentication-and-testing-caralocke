@@ -16,8 +16,8 @@ function validateUser(req, res, next) {
 
 function usernameIsUnique(req, res, next) {
     const { username } = req.body
-    Users.findByUsername(username)
-        .then(user => {
+    Users.findBy({username})
+        .then(([user]) => {
             if (user) {
                 res.status(422).json({ message: 'username taken'})
             } else {
